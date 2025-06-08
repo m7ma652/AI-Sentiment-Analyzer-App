@@ -1,0 +1,132 @@
+.custom-navbar {
+    padding: 0.5rem 2rem;
+    background: linear-gradient(to right, #ffffff, #f8f9fa);
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.logo-container:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.logo-icon {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    padding: 0.75rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.app-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.app-subtitle {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+/* Dark theme styles */
+.dark-theme .logo-container:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .app-name {
+    color: #ffffff;
+}
+
+.dark-theme .app-subtitle {
+    color: #bdc3c7;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.theme-toggle {
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg);
+}
+
+.logout-btn {
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Dark Theme Styles */
+.dark-theme {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-theme .custom-navbar {
+    background: linear-gradient(to right, #2c2c2c, #1e1e1e);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme .logo-container {
+    color: #ffffff;
+}
+
+.dark-theme .logo-container i {
+    color: #3498db;
+}
+
+.dark-theme .p-button-text {
+    color: #ffffff;
+}
+
+.dark-theme .p-button-text:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ********************************************************** */
+.login-btn {
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+}
+
+.dark-theme .p-button-success {
+    background: #2ecc71;
+}
+
+.dark-theme .p-button-success:hover {
+    background: #27ae60;
+}

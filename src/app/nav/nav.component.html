@@ -1,0 +1,32 @@
+<p-menubar [model]="items" class="custom-navbar">
+    <ng-template pTemplate="start">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="pi pi-comments"></i>
+            </div>
+            <div class="logo-text">
+                <span class="app-name">Sentiment</span>
+                <span class="app-subtitle">Analyzer</span>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="end">
+        <div class="nav-actions">
+            <button pButton [icon]="isDark ? 'pi pi-sun' : 'pi pi-moon'"
+                class="p-button-rounded p-button-text theme-toggle" (click)="toggleTheme()"
+                [pTooltip]="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+            </button>
+            @if (!isLoggedIn) {
+            <button pButton icon="pi pi-sign-in" label="Login" class="p-button-rounded p-button-success login-btn"
+                (click)="login()">
+            </button>
+            }
+            @if (isLoggedIn) {
+            <button pButton icon="pi pi-sign-out" label="Logout" class="p-button-rounded p-button-danger logout-btn"
+                (click)="logout()">
+            </button>
+            }
+        </div>
+    </ng-template>
+</p-menubar>
