@@ -1,1 +1,17 @@
-<p>login works!</p>
+<div class="login-container">
+    <p-card header="Login" styleClass="login-card">
+        <div class="login-form">
+            <div class="field">
+                <label for="username">Username</label>
+                <input id="username" type="text" pInputText [(ngModel)]="username" class="w-full" />
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <p-password [(ngModel)]="password" [feedback]="false" [toggleMask]="true" styleClass="w-full" />
+            </div>
+
+            <button pButton label="Login" (click)="login()" class="w-full"></button>
+        </div>
+    </p-card>
+</div>

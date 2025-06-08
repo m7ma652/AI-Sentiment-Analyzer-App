@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-nav',
   standalone: true,
@@ -12,13 +13,18 @@ import { TooltipModule } from 'primeng/tooltip';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
 
   items: any[] = [];
   isDark: boolean = false;
   isLoggedIn: boolean = false;
+  private subscription: any;
 
-  constructor(private router: Router, private renderer: Renderer2) { }
+  constructor(private router: Router, private renderer: Renderer2, private authServ: AuthService) {
+    this.subscription = this.authServ.isLoggedIn.subscribe(
+      isLoggedIn => this.isLoggedIn = isLoggedIn
+    );
+  }
 
   ngOnInit() {
     this.items = [
@@ -32,9 +38,13 @@ export class NavComponent implements OnInit {
     this.applyTheme();
     this.checkLoginStatus();
   }
-  checkLoginStatus() {
-    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
+
   toggleTheme() {
     this.isDark = !this.isDark;
     localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
@@ -49,12 +59,17 @@ export class NavComponent implements OnInit {
       this.renderer.removeClass(document.body, themeClass);
     }
   }
+  checkLoginStatus() {
+    this.isLoggedIn = this.authServ.isLogIn();
+  }
   login() {
     this.router.navigate(['/login']);
   }
   logout() {
-    localStorage.removeItem('isLoggedIn');
-    this.isLoggedIn = false;  
+    console.log('Before logout, localStorage:', localStorage);
+    this.authServ.logOut();
+    console.log('After logout, localStorage:', localStorage);
+    this.checkLoginStatus();
     this.router.navigate(['/login']);
   }
 }
