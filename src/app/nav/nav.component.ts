@@ -73,3 +73,4 @@ export class NavComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login']);
   }
 }
+   

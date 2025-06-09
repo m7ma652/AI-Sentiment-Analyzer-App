@@ -1,1 +1,36 @@
-<p>analyze works!</p>
+<div class="container p-4">
+    <p-card header="Sentiment Analyzer" styleClass="analyze-card">
+        <div class="analyze-form">
+            <span class="p-float-label">
+                <textarea id="textInput" pInputTextarea [(ngModel)]="textInput" [rows]="4" class="w-full">
+                </textarea>
+                <label for="textInput">Text to Analyze</label>
+            </span>
+
+            <button pButton type="button" label="Analyze" icon="pi pi-search" (click)="analyze()"
+                [disabled]="loading || !textInput.trim()" class="w-full">
+            </button>
+
+            @if (loading) {
+            <div class="loading-container">
+                <p-progressSpinner></p-progressSpinner>
+                <span>Analyzing...</span>
+            </div>
+            }
+
+            @if (result) {
+            <div class="result-container">
+                <h3>Analysis Result:</h3>
+                <pre class="result-text">{{ result | json }}</pre>
+            </div>
+            }
+
+            @if (error) {
+            <div class="error-container">
+                <i class="pi pi-exclamation-triangle"></i>
+                <span>{{ error }}</span>
+            </div>
+            }
+        </div>
+    </p-card>
+</div>

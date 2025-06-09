@@ -18,7 +18,7 @@ export class AuthService {
     localStorage.removeItem('isLoggedIn');
     this.isLoggedInSub.next(false);
   }
-  isLogIn(): boolean {
+  isLogIn() {
     return localStorage.getItem('isLoggedIn') === 'true';
   }
 }
