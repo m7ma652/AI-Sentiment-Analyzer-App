@@ -1,1 +1,17 @@
-<p>home works!</p>
+<div class="container">
+  <h1>Sentiment Analyzer</h1>
+  <p>Write to Analyze</p>
+  <textarea
+    [(ngModel)]="textInput"
+    rows="6"
+    placeholder="Write your text here..."
+    class="input-area"
+  ></textarea>
+  <button (click)="analyzeSentiment()">Analyze 🔍</button>
+
+  <div *ngIf="showResult" class="result-box">
+    <h2>Result</h2>
+    <p>{{ sentimentResult }}</p>
+    <p>Confidence rate : {{ confidence }}%</p>
+  </div>
+</div>
