@@ -1,36 +1,194 @@
-.container {
-  max-width: 600px;
-  margin: auto;
-  padding: 2rem;
+/* body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.hero-container {
+  background-color: #fff;
+  padding: 4rem 2rem 2rem;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+}
+
+.hero-content {
   text-align: center;
-  background-color: #f4f4f4;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: auto;
+  position: relative;
 }
-.input-area {
-  width: 100%;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid #ccc;
-  font-size: 1rem;
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 1.2;
 }
-button {
+
+.hero-content .highlight {
+  color: #888;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.hero-content .get-demo {
+  margin-top: 2rem;
   padding: 0.7rem 1.5rem;
+  font-size: 1rem;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 0.5rem;
-  font-size: 1rem;
   cursor: pointer;
 }
-button:hover {
-  background-color: #0056b3;
+
+.floating-img {
+  position: absolute;
+  width: 100px;
+  top: -40px;
+  left: -50px;
+  transform: rotate(-4deg);
 }
-.result-box {
-  margin-top: 2rem;
+
+.floating-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.floating-icons .icon {
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
   padding: 1rem;
-  background-color: #ffffff;
+  width: 180px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.floating-icons .icon img {
+  width: 40px;
+  margin-bottom: 0.5rem;
+} */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.hero {
+  padding: 2rem;
+  background-color: white;
+  border-radius: 1rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+  height: 32px;
+}
+
+.nav-links a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.auth-buttons a {
+  margin-left: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-outline {
+  padding: 0.5rem 1rem;
+  border: 1px solid #2563eb;
   border-radius: 0.5rem;
-  border: 1px solid #ddd;
+  color: #2563eb;
+}
+
+.btn-primary {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.main {
+  text-align: center;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.main h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.main h1 span {
+  color: #9ca3af;
+}
+
+.main p {
+  font-size: 1.125rem;
+  color: #6b7280;
+}
+
+.floating.sticky {
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 100px;
+  transform: rotate(-4deg);
+}
+
+.info-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 1rem;
+  width: 200px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card img {
+  width: 40px;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #374151;
+  margin: 0;
 }
