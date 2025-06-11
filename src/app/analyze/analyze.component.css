@@ -1,62 +1,40 @@
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem;
+    text-align: center;
+    background-color: #f4f4f4;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.analyze-card {
-    margin-top: 2rem;
-}
-
-.analyze-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.w-full {
+.input-area {
     width: 100%;
-}
-
-.loading-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
     padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
 }
 
-.result-container {
+button {
+    padding: 0.7rem 1.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.result-box {
+    margin-top: 2rem;
     padding: 1rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    margin-top: 1rem;
-}
-
-.result-text {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #2c3e50;
-}
-
-.error-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #dc3545;
-    padding: 1rem;
-    background-color: #f8d7da;
-    border-radius: 8px;
-}
-
-/* Dark theme styles */
-.dark-theme .result-container {
-    background-color: #2c2c2c;
-}
-
-.dark-theme .result-text {
-    color: #ffffff;
-}
-
-.dark-theme .error-container {
-    background-color: #3c2c2c;
-}
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    border: 1px solid #ddd;
+}   

@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { SentimentService } from '../services/sentiment.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SentimentService } from '../services/sentiment.service';
+import { AnalysisService } from '../services/analysis.service';
+// import { SentimentHistoryService } from './../services/sentiment-history.service';
+
 
 @Component({
   selector: 'app-analyze',
@@ -15,41 +18,87 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   styleUrl: './analyze.component.css'
 })
 export class AnalyzeComponent {
+  result: string | null = null;
+  isLoading: boolean = false;
+  errorMessage: string | null = null;
+  text: string = '';
 
-  textInput: string = '';
-  result: any = null;
-  loading: boolean = false;
-  error: string = '';
+  constructor(
+    private sentiment: SentimentService,
+    private analysisService: AnalysisService
+  ) { }
 
-  constructor(private sentiment: SentimentService) { }
-
-  analyze() {
-    if (!this.textInput.trim()) return;
+  analyzeText(text: string) {
+    this.isLoading = true;
+    this.errorMessage = null;
     this.result = null;
-    this.error = '';
-    this.loading = true;
-    console.log('Sending text for analysis:', this.textInput); // سجل النص المرسل
 
-    this.sentiment.analyzeSentiment(this.textInput).subscribe({
-      next: (res: any) => {
-        console.log('API Response:', res);
-        this.loading = false;
+    const englishTextPattern = /^[a-zA-Z0-9\s.,!?;:'"()&\-—_]+$/; // يسمح بأحرف إنجليزية وأرقام ومسافات وعلامات ترقيم شائعة
 
-        // تنسيق النتيجة حسب استجابة AssemblyAI
-        if (res && res.sentiment) {
-          this.result = {
-            label: res.sentiment,
-            score: res.confidence ? (res.confidence * 100).toFixed(2) + '%' : 'N/A'
-          };
+    if (!text || text.trim() === '') {
+      this.errorMessage = 'Please enter some text to analyze.';
+      this.isLoading = false;
+      return; // توقف عن التنفيذ إذا كان النص فارغًا
+    }
+
+    if (!englishTextPattern.test(text)) {
+      this.errorMessage = 'Please enter English text only.';
+      this.isLoading = false;
+      return; // توقف عن التنفيذ إذا لم يكن النص إنجليزيًا
+    }
+
+    this.sentiment.analyzeSentiment(text).subscribe(
+      response => {
+        // Logging the raw response to confirm its structure
+        console.log('Raw API Response:', response);
+
+        // *** التغيير الأساسي هنا: نصل إلى المصفوفة الداخلية أولاً ***
+        if (response && Array.isArray(response) && response.length > 0 && Array.isArray(response[0]) && response[0].length > 0) {
+          const innerArray = response[0]; // هذه هي المصفوفة التي تحتوي على كائنات التسميات
+
+          const mostLikely = innerArray.reduce((prev: any, current: any) => {
+            return (prev.score > current.score) ? prev : current;
+          });
+
+          console.log('Full mostLikely object (after proper access):', mostLikely);
+          console.log('Type of mostLikely.label (after proper access):', typeof mostLikely.label);
+          console.log('Value of mostLikely.label (JSON stringified, after proper access):', JSON.stringify(mostLikely.label));
+          let sentimentLabel = '';
+          switch (mostLikely.label) {
+            case 'LABEL_0':
+              this.result = 'Negative 😞';
+              sentimentLabel = 'Negative';
+              break;
+            case 'LABEL_1':
+              this.result = 'Neutral 😐';
+              sentimentLabel = 'Neutral';
+              break;
+            case 'LABEL_2':
+              this.result = 'Positive 😊';
+              sentimentLabel = 'Positive';
+              break;
+            default:
+              this.result = 'Unknown Sentiment';
+              sentimentLabel = 'Unknown';
+          }
+
+          // Save the analysis result
+          this.analysisService.addAnalysisResult({
+            text: text,
+            result: sentimentLabel,
+            timestamp: new Date()
+          });
         } else {
-          this.result = res;
+          this.result = 'No sentiment detected or invalid response format.';
         }
+        this.isLoading = false;
       },
-      error: (err) => {
-        console.error('API Error:', err);
-        this.loading = false;
-        this.error = "Something went wrong while analyzing. Please try again.";
+      error => {
+        console.error('Error:', error);
+        this.errorMessage = 'Failed to analyze sentiment. Please try again.';
+        this.result = null;
+        this.isLoading = false;
       }
-    });
+    );
   }
 }

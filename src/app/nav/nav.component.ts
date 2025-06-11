@@ -16,7 +16,6 @@ import { AuthService } from '../services/auth.service';
 export class NavComponent implements OnInit, OnDestroy {
 
   items: any[] = [];
-  isDark: boolean = false;
   isLoggedIn: boolean = false;
   private subscription: any;
 
@@ -32,31 +31,12 @@ export class NavComponent implements OnInit, OnDestroy {
       { label: 'Analyze', icon: 'pi pi-search', routerLink: '/analyze' },
       { label: 'Profile', icon: 'pi pi-user', routerLink: '/profile' },
     ];
-
-    const storedTheme = localStorage.getItem('theme');
-    this.isDark = storedTheme === 'dark';
-    this.applyTheme();
     this.checkLoginStatus();
   }
 
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
-    }
-  }
-
-  toggleTheme() {
-    this.isDark = !this.isDark;
-    localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
-    this.applyTheme();
-  }
-
-  applyTheme() {
-    const themeClass = 'dark-theme';
-    if (this.isDark) {
-      this.renderer.addClass(document.body, themeClass);
-    } else {
-      this.renderer.removeClass(document.body, themeClass);
     }
   }
   checkLoginStatus() {

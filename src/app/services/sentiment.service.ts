@@ -1,22 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class SentimentService {
-  private apiUrl = "https://corsproxy.io/?https://api.assemblyai.com/v2/sentiment";
-  private apiKey = "aac8cff9504b4844bf130b8e3fefe7c6";
+  private apiUrl = 'https://api-inference.huggingface.co/models';
+  private token = environment.huggingFaceToken;
 
   constructor(private http: HttpClient) { }
 
-  analyzeSentiment(text: string) {
+  queryModel(modelName: string, inputs: any): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization': this.apiKey,
+      'Authorization': `Bearer ${this.token}`,
       'Content-Type': 'application/json'
     });
 
-    const body = { text: text };
-    return this.http.post(this.apiUrl, body, { headers });
+    const url = `${this.apiUrl}/${modelName}`;
+    return this.http.post(url, inputs, { headers });
+  }
+
+  analyzeSentiment(text: string): Observable<any> {
+    return this.queryModel('cardiffnlp/twitter-roberta-base-sentiment', {
+      inputs: text
+    });
   }
 }

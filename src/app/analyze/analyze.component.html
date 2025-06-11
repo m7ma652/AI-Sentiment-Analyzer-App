@@ -1,36 +1,17 @@
-<div class="container p-4">
-    <p-card header="Sentiment Analyzer" styleClass="analyze-card">
-        <div class="analyze-form">
-            <span class="p-float-label">
-                <textarea id="textInput" pInputTextarea [(ngModel)]="textInput" [rows]="4" class="w-full">
-                </textarea>
-                <label for="textInput">Text to Analyze</label>
-            </span>
+<div class="container">
+    <textarea #textInput placeholder="Enter text to analyze" class="input-area" rows="6"></textarea>
+    <button (click)="analyzeText(textInput.value)" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Analyze Sentiment</span>
+        <p-progressSpinner *ngIf="isLoading" styleClass="w-2rem h-2rem" strokeWidth="8"
+            animationDuration=".5s"></p-progressSpinner>
+    </button>
 
-            <button pButton type="button" label="Analyze" icon="pi pi-search" (click)="analyze()"
-                [disabled]="loading || !textInput.trim()" class="w-full">
-            </button>
+    <div *ngIf="result" class="result-box">
+        <h3>Result:</h3>
+        <p>{{ result }}</p>
+    </div>
 
-            @if (loading) {
-            <div class="loading-container">
-                <p-progressSpinner></p-progressSpinner>
-                <span>Analyzing...</span>
-            </div>
-            }
-
-            @if (result) {
-            <div class="result-container">
-                <h3>Analysis Result:</h3>
-                <pre class="result-text">{{ result | json }}</pre>
-            </div>
-            }
-
-            @if (error) {
-            <div class="error-container">
-                <i class="pi pi-exclamation-triangle"></i>
-                <span>{{ error }}</span>
-            </div>
-            }
-        </div>
-    </p-card>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
 </div>
