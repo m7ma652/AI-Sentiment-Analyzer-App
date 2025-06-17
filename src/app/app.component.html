@@ -1,2 +1,6 @@
-<app-nav></app-nav>
-<router-outlet></router-outlet>
+<div [ngClass]="{ 'dark-theme': isDark }">
+    @if (showThemeToggle()) {
+    <app-nav></app-nav>
+    }
+    <router-outlet></router-outlet>
+</div>

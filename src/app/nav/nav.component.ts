@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { AuthService } from '../services/auth.service';
+import { ThemeService } from '../services/theme.service';
 @Component({
   selector: 'app-nav',
   standalone: true,
@@ -18,18 +19,21 @@ export class NavComponent implements OnInit, OnDestroy {
   items: any[] = [];
   isLoggedIn: boolean = false;
   private subscription: any;
+  isDark = false;
 
-  constructor(private router: Router, private renderer: Renderer2, private authServ: AuthService) {
+  constructor(private router: Router, private renderer: Renderer2, private authServ: AuthService, private themeService: ThemeService) {
     this.subscription = this.authServ.isLoggedIn.subscribe(
       isLoggedIn => this.isLoggedIn = isLoggedIn
     );
+    this.themeService.isDark$.subscribe(value => this.isDark = value);
   }
 
   ngOnInit() {
     this.items = [
       { label: 'Home', icon: 'pi pi-home', routerLink: '/' },
       { label: 'Analyze', icon: 'pi pi-search', routerLink: '/analyze' },
-      { label: 'Profile', icon: 'pi pi-user', routerLink: '/profile' },
+      // { label: 'Chat Bot', icon: 'pi pi-search', routerLink: '/chatbot' },
+      // { label: 'Profile', icon: 'pi pi-user', routerLink: '/profile' },
     ];
     this.checkLoginStatus();
   }
@@ -42,15 +46,20 @@ export class NavComponent implements OnInit, OnDestroy {
   checkLoginStatus() {
     this.isLoggedIn = this.authServ.isLogIn();
   }
-  login() {
-    this.router.navigate(['/login']);
+  // login() {
+  //   this.router.navigate(['/login']);
+  // }
+  register() {
+    this.router.navigate(['/register']);
   }
   logout() {
     console.log('Before logout, localStorage:', localStorage);
     this.authServ.logOut();
     console.log('After logout, localStorage:', localStorage);
     this.checkLoginStatus();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/register']);
+  }
+  toggleTheme() {
+    this.themeService.toggleTheme();
   }
 }
-   

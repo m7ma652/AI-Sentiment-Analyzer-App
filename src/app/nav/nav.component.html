@@ -6,6 +6,7 @@
             </div>
             <div class="logo-text">
                 <span class="app-name">Sentiment</span>
+                <span class="app-name">Chat Bot</span>
                 <span class="app-subtitle">Analyzer</span>
             </div>
         </div>
@@ -13,14 +14,15 @@
 
     <ng-template pTemplate="end">
         <div class="nav-actions">
+            <button (click)="toggleTheme()" class="nav-button">
+                {{ isDark ? '☀️ Light' : '🌙 Dark' }}
+            </button>
             @if (!isLoggedIn) {
-            <button pButton icon="pi pi-sign-in" label="Login" class="p-button-rounded p-button-success login-btn"
-                (click)="login()">
+            <button pButton icon="pi pi-sign-in" label="Register" class="nav-button login-btn" (click)="register()">
             </button>
             }
             @if (isLoggedIn) {
-            <button pButton icon="pi pi-sign-out" label="Logout" class="p-button-rounded p-button-danger logout-btn"
-                (click)="logout()">
+            <button pButton icon="pi pi-sign-out" label="Logout" class="nav-button logout-btn" (click)="logout()">
             </button>
             }
         </div>

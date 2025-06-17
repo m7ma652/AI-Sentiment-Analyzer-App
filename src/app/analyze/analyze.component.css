@@ -8,6 +8,11 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.dark-theme .container {
+    background-color: #1e1e1e;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
 .input-area {
     width: 100%;
     padding: 1rem;
@@ -15,6 +20,14 @@
     border-radius: 0.5rem;
     border: 1px solid #ccc;
     font-size: 1rem;
+    background-color: #fff;
+    color: #000;
+}
+
+.dark-theme .input-area {
+    background-color: #2c2c2c;
+    color: #fff;
+    border: 1px solid #666;
 }
 
 button {
@@ -27,8 +40,17 @@ button {
     cursor: pointer;
 }
 
+.dark-theme button {
+    background-color: #0056b3;
+    color: #fff;
+}
+
 button:hover {
     background-color: #0056b3;
+}
+
+.dark-theme button:hover {
+    background-color: #003f7f;
 }
 
 .result-box {
@@ -37,4 +59,11 @@ button:hover {
     background-color: #ffffff;
     border-radius: 0.5rem;
     border: 1px solid #ddd;
-}   
+    color: #000;
+}
+
+.dark-theme .result-box {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: #fff;
+}

@@ -1,8 +1,8 @@
 .custom-navbar {
-    padding: 0.5rem 2rem;
-    background: linear-gradient(to right, #ffffff, #f8f9fa);
+    padding: 0.75rem 2rem;
+    background: linear-gradient(to right, #4f46e5, #7c3aed);
     border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .logo-container {
@@ -10,16 +10,18 @@
     align-items: center;
     gap: 1rem;
     padding: 0.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .logo-container:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
 }
 
 .logo-icon {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: rgba(255, 255, 255, 0.2);
     padding: 0.75rem;
     border-radius: 12px;
     display: flex;
@@ -41,26 +43,13 @@
 .app-name {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #2c3e50;
+    color: white;
 }
 
 .app-subtitle {
     font-size: 0.9rem;
-    color: #7f8c8d;
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
-}
-
-/* Dark theme styles */
-.dark-theme .logo-container:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.dark-theme .app-name {
-    color: #ffffff;
-}
-
-.dark-theme .app-subtitle {
-    color: #bdc3c7;
 }
 
 .nav-actions {
@@ -69,64 +58,344 @@
     align-items: center;
 }
 
-.theme-toggle {
-    width: 2.5rem;
-    height: 2.5rem;
+.nav-actions button {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.theme-toggle:hover {
-    transform: rotate(15deg);
-}
-
-.logout-btn {
-    transition: all 0.3s ease;
-}
-
-.logout-btn:hover {
-    transform: translateY(-2px);
-}
-
-/* Dark Theme Styles */
-.dark-theme {
-    background-color: #1a1a1a;
-    color: #ffffff;
-}
-
-.dark-theme .custom-navbar {
-    background: linear-gradient(to right, #2c2c2c, #1e1e1e);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.dark-theme .logo-container {
-    color: #ffffff;
-}
-
-.dark-theme .logo-container i {
-    color: #3498db;
-}
-
-.dark-theme .p-button-text {
-    color: #ffffff;
-}
-
-.dark-theme .p-button-text:hover {
     background: rgba(255, 255, 255, 0.1);
+    color: white;
 }
 
-/* ********************************************************** */
+.nav-actions button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
 .login-btn {
-    transition: all 0.3s ease;
+    background: #22c55e !important;
 }
 
 .login-btn:hover {
-    transform: translateY(-2px);
+    background: #16a34a !important;
 }
 
+.logout-btn {
+    background: #ef4444 !important;
+}
+
+.logout-btn:hover {
+    background: #dc2626 !important;
+}
+
+/* Dark theme styles */
+.dark-theme .custom-navbar {
+    background: #000000 !important;
+    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.8), 0 2px 4px -2px rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid #30363d !important;
+}
+
+.dark-theme .logo-container {
+    background: #1a1a1a !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.dark-theme .logo-container:hover {
+    background: #2b2b2b !important;
+    transform: translateY(-1px);
+}
+
+.dark-theme .logo-icon {
+    background: transparent !important;
+}
+
+.dark-theme .logo-icon i {
+    color: #ffffff !important;
+}
+
+.dark-theme .logo-text .app-name,
+.dark-theme .logo-text .app-subtitle {
+    color: #ffffff !important;
+}
+
+.dark-theme .nav-actions button {
+    background: #2b2b2b !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.dark-theme .nav-actions button:hover {
+    background: #404040 !important;
+    transform: translateY(-1px);
+}
+
+.dark-theme .login-btn {
+    background: #2ea043 !important;
+    color: white !important;
+}
+
+.dark-theme .login-btn:hover {
+    background: #22863a !important;
+}
+
+.dark-theme .logout-btn {
+    background: #f85149 !important;
+    color: white !important;
+}
+
+.dark-theme .logout-btn:hover {
+    background: #d73a49 !important;
+}
+
+/* Rigorous PrimeNG component overrides for dark theme */
+/* Target the p-menubar component itself, at its highest level */
+.dark-theme p-menubar {
+    background-color: #000000 !important;
+    /* Force menubar component background to black */
+    border: none !important;
+}
+
+/* Target the actual internal div of p-menubar */
+.dark-theme p-menubar.p-element.p-component.custom-navbar>div.p-menubar {
+    background: #000000 !important;
+    /* Force internal menubar div background to black */
+    border: none !important;
+}
+
+.dark-theme .p-menuitem-link {
+    color: #ffffff !important;
+    /* Ensure menu item links are white */
+    background: #000000 !important;
+    /* Ensure background is black */
+    border-radius: 0 !important;
+    /* Remove any default border-radius that might show white */
+}
+
+.dark-theme .p-menuitem-link:hover {
+    background: #1a1a1a !important;
+    /* Darker hover for menu items */
+}
+
+.dark-theme .p-menuitem-text {
+    color: #ffffff !important;
+    /* Ensure menu item text is white */
+}
+
+.dark-theme .p-button {
+    background: #2b2b2b !important;
+    /* Force all p-buttons to this dark background */
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.dark-theme .p-button:hover {
+    background: #404040 !important;
+    /* Darker hover state for p-buttons */
+}
+
+.dark-theme .p-menubarsub {
+    background: #000000 !important;
+    /* Ensure submenus are black */
+    color: #ffffff !important;
+}
+
+.dark-theme .p-menuitem {
+    background: #000000 !important;
+    /* Ensure individual menu items are black */
+    border: none !important;
+}
+
+.dark-theme .p-button-label {
+    color: inherit !important;
+    /* Ensure button labels inherit color */
+}
+
+.dark-theme .p-element {
+    background: inherit !important;
+    /* Try to catch any remaining white elements */
+    color: inherit !important;
+}
+
+.dark-theme .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled) .p-menuitem-link:focus {
+    box-shadow: none !important;
+    /* Remove focus outline that might be white */
+}
+
+.dark-theme .p-button.p-button-text {
+    background: #2b2b2b !important;
+    /* Force text buttons to dark background */
+    color: #ffffff !important;
+}
+
+.dark-theme .p-button.p-button-text:hover {
+    background: #404040 !important;
+    /* Darker hover for text buttons */
+}
+
+.dark-theme .p-button.p-button-icon-only {
+    background: #2b2b2b !important;
+    /* Force icon only buttons to dark background */
+    color: #ffffff !important;
+}
+
+.dark-theme .p-button.p-button-icon-only:hover {
+    background: #404040 !important;
+}
+
+/* Ensure the parent of p-menubar does not have a white background */
+app-nav {
+    background-color: #000000 !important;
+    /* Ensure the app-nav component itself is black */
+}
+
+/* ********************************************************** */
 .dark-theme .p-button-success {
     background: #2ecc71;
 }
 
 .dark-theme .p-button-success:hover {
     background: #27ae60;
+}
+
+/* Light mode base styles for PrimeNG p-menubar */
+p-menubar.p-element.p-component.custom-navbar>div.p-menubar {
+    background-color: white !important;
+    border: none !important;
+}
+
+p-menubar.p-element.p-component.custom-navbar .p-menuitem-link {
+    color: #1f2937 !important;
+    background-color: transparent !important;
+}
+
+p-menubar.p-element.p-component.custom-navbar .p-menuitem-text {
+    color: #1f2937 !important;
+}
+
+/* Dark theme styles - Rigorous Overrides */
+.dark-theme .custom-navbar {
+    background: #000000 !important;
+    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.8), 0 2px 4px -2px rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid #30363d !important;
+}
+
+.dark-theme .logo-container {
+    background: #1a1a1a !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.dark-theme .logo-container:hover {
+    background: #2b2b2b !important;
+    transform: translateY(-1px);
+}
+
+.dark-theme .logo-icon i {
+    color: #ffffff !important;
+}
+
+.dark-theme .logo-text .app-name,
+.dark-theme .logo-text .app-subtitle {
+    color: #ffffff !important;
+}
+
+.dark-theme .nav-actions button {
+    background: #2b2b2b !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.dark-theme .nav-actions button:hover {
+    background: #404040 !important;
+    transform: translateY(-1px);
+}
+
+.dark-theme .login-btn {
+    background: #2ea043 !important;
+    color: white !important;
+}
+
+.dark-theme .login-btn:hover {
+    background: #22863a !important;
+}
+
+.dark-theme .logout-btn {
+    background: #f85149 !important;
+    color: white !important;
+}
+
+.dark-theme .logout-btn:hover {
+    background: #d73a49 !important;
+}
+
+/* Rigorous PrimeNG p-menubar component overrides for dark theme */
+.dark-theme p-menubar.p-element.p-component.custom-navbar>div.p-menubar {
+    background: #000000 !important;
+    border: none !important;
+}
+
+.dark-theme .p-menuitem-link {
+    color: #ffffff !important;
+    background: #000000 !important;
+    border-radius: 0 !important;
+}
+
+.dark-theme .p-menuitem-link:hover {
+    background: #1a1a1a !important;
+}
+
+.dark-theme .p-menuitem-text {
+    color: #ffffff !important;
+}
+
+.dark-theme .p-button {
+    background: #2b2b2b !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.dark-theme .p-button:hover {
+    background: #404040 !important;
+}
+
+.dark-theme .p-menubarsub {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+.dark-theme .p-menuitem {
+    background: #000000 !important;
+    border: none !important;
+}
+
+.dark-theme .p-button-label {
+    color: inherit !important;
+}
+
+.dark-theme .p-element {
+    background: inherit !important;
+    color: inherit !important;
+}
+
+.dark-theme .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled) .p-menuitem-link:focus {
+    box-shadow: none !important;
+}
+
+.dark-theme .p-button.p-button-text {
+    background: #2b2b2b !important;
+    color: #ffffff !important;
+}
+
+.dark-theme .p-button.p-button-text:hover {
+    background: #404040 !important;
+}
+
+.dark-theme .p-button.p-button-icon-only {
+    background: #2b2b2b !important;
+    color: #ffffff !important;
+}
+
+.dark-theme .p-button.p-button-icon-only:hover {
+    background: #404040 !important;
 }

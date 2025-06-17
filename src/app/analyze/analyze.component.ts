@@ -7,6 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SentimentService } from '../services/sentiment.service';
 import { AnalysisService } from '../services/analysis.service';
+import { NgZone } from '@angular/core';
+
 // import { SentimentHistoryService } from './../services/sentiment-history.service';
 
 
@@ -25,7 +27,8 @@ export class AnalyzeComponent {
 
   constructor(
     private sentiment: SentimentService,
-    private analysisService: AnalysisService
+    private analysisService: AnalysisService,
+    private ngZone: NgZone
   ) { }
 
   analyzeText(text: string) {
@@ -33,7 +36,7 @@ export class AnalyzeComponent {
     this.errorMessage = null;
     this.result = null;
 
-    const englishTextPattern = /^[a-zA-Z0-9\s.,!?;:'"()&\-—_]+$/; // يسمح بأحرف إنجليزية وأرقام ومسافات وعلامات ترقيم شائعة
+    const englishTextPattern = /^[a-zA-Z0-9\s.,!?;:'"()&\-—_’‘]+$/;
 
     if (!text || text.trim() === '') {
       this.errorMessage = 'Please enter some text to analyze.';
@@ -66,15 +69,31 @@ export class AnalyzeComponent {
           let sentimentLabel = '';
           switch (mostLikely.label) {
             case 'LABEL_0':
-              this.result = 'Negative 😞';
+              setTimeout(() => {
+                this.ngZone.run(() => {
+                  this.result = 'Negative 😞';
+                  this.text = '';
+                });
+              }, 500);
               sentimentLabel = 'Negative';
               break;
+
             case 'LABEL_1':
-              this.result = 'Neutral 😐';
+              setTimeout(() => {
+                this.ngZone.run(() => {
+                  this.result = 'Neutral 😐';
+                  this.text = '';
+                });
+              }, 500);
               sentimentLabel = 'Neutral';
               break;
             case 'LABEL_2':
-              this.result = 'Positive 😊';
+              setTimeout(() => {
+                this.ngZone.run(() => {
+                  this.result = 'Positive 😊';
+                  this.text = '';
+                });
+              }, 500);
               sentimentLabel = 'Positive';
               break;
             default:
@@ -98,6 +117,7 @@ export class AnalyzeComponent {
         this.errorMessage = 'Failed to analyze sentiment. Please try again.';
         this.result = null;
         this.isLoading = false;
+
       }
     );
   }

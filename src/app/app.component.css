@@ -1,0 +1,49 @@
+/* styles.css */
+
+/* Dark theme general */
+.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Card */
+.dark-theme .card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Input textarea */
+.dark-theme textarea.input-area {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #555;
+}
+
+/* Buttons */
+.dark-theme button {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #666;
+}
+
+.dark-theme button:hover {
+    background-color: #444;
+}
+
+/* Result box */
+.dark-theme .result-box {
+    background-color: #222;
+    border: 1px solid #444;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+/* Error message */
+.dark-theme .error-message {
+    background-color: #330000;
+    color: #ffcccc;
+    border: 1px solid #990000;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
